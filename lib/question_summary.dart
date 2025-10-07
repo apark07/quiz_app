@@ -10,23 +10,47 @@ class QuestionSummary extends StatelessWidget {
     return Column(
       children: summaryData.map((data) {
         return Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(((data['question_index'] as int) + 1).toString()),
+            Text(
+              ((data['question_index'] as int) + 1).toString(),
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(width: 10),
             Expanded(
               child: Column(
-              children: [
-                Text(data['question'] as String),
-                const SizedBox(
-                height: 5,
-                ),
-                Text(data['correct_answer'] as String),
-                Text(data['user_answer'] as String),
-              ],
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    data['question'] as String,
+                    style: const TextStyle(
+                      color: Colors.lightBlueAccent,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    'Your answer: ${data['user_answer']}',
+                    style: const TextStyle(
+                      color: Colors.pinkAccent,
+                    ),
+                  ),
+                  Text(
+                    'Correct answer: ${data['correct_answer']}',
+                    style: const TextStyle(
+                      color: Colors.greenAccent,
+                    ),
+                  ),
+                  const SizedBox(height: 15),
+                ],
+              ),
             ),
-            )
           ],
         );
-      },).toList(),
-  );
-}
+      }).toList(),
+    );
+  }
 }
