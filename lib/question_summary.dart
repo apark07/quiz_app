@@ -26,8 +26,7 @@ class QuestionSummary extends StatelessWidget {
             )
           ],
         );
-      },
-    ).toList(),
+      },).toList(),
   );
 }
 }

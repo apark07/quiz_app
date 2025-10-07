@@ -10,7 +10,7 @@ class Quiz extends StatefulWidget {
   @override
   State<Quiz> createState() {
     return _QuizState();
-  } 
+  }
 }
 
 class _QuizState extends State<Quiz> {
@@ -19,16 +19,24 @@ class _QuizState extends State<Quiz> {
 
   void chooseAnswer(String answer) {
     selectedAnswers.add(answer);
+
     if (selectedAnswers.length == questions.length) {
       setState(() {
-        //selectedAnswers = [];
         activeScreen = ResultsScreen(
           chosenAnswers: selectedAnswers,
+          onRestart: restartQuiz,
         );
       });
     }
   }
-  
+
+  void restartQuiz() {
+    setState(() {
+      selectedAnswers = [];
+      activeScreen = StartScreen(switchScreen);
+    });
+  }
+
   @override
   void initState() {
     activeScreen = StartScreen(switchScreen);
@@ -48,7 +56,7 @@ class _QuizState extends State<Quiz> {
     return MaterialApp(
       home: Scaffold(
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
                 Color.fromARGB(255, 78, 13, 151),
