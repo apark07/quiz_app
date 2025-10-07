@@ -9,13 +9,15 @@ class QuestionSummary extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: summaryData.map((data) {
+        final bool isCorrect = data['correct_answer'] == data['user_answer'];
+
         return Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               ((data['question_index'] as int) + 1).toString(),
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: isCorrect ? Colors.greenAccent : Colors.redAccent,
                 fontWeight: FontWeight.bold,
               ),
             ),
